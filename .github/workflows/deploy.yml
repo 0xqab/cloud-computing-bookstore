@@ -22,15 +22,15 @@ jobs:
 
       - name: Setup kubeconfig
         run: |
-          echo '${{ secrets.KUBE_CONFIG }}' > kubeconfig.yaml
-          chmod 600 kubeconfig.yaml
+          echo '${{ secrets.KUBE_CONFIG }}' > ./kubeconfig.yaml
+          chmod 600 ./kubeconfig.yaml
 
       - name: Apply kubernetes files
         env:
           KUBECONFIG: kubeconfig.yaml
         run: |
-          kubectl apply -f k8s/deployment.yaml
+          kubectl apply --kustomize ./kustomize
 
       - name: Post kubeconfig
         if: always()
-        run: rm -f kubeconfig.yaml
+        run: rm -f ./kubeconfig.yaml
