@@ -21,7 +21,7 @@ spec:
       containers:
         - name: bookstore
           image: ghcr.io/0xqab/cloud-computing-bookstore:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           startupProbe:
             httpGet:
               path: /actuator/health/readiness
